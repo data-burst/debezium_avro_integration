@@ -15,7 +15,7 @@ DEBEZIUM_ARTIFACTS=(
   "kafka-schema-registry-client"
   "kafka-schema-serializer"
 )
-JAR_FILES_DIR=/tmp
+
 for ARTIFACT in ${DEBEZIUM_ARTIFACTS[@]}; do
   echo $ARTIFACT
   curl -S --progress-bar --remote-name --output-dir "$JAR_FILES_DIR/" "https://packages.confluent.io/maven/io/confluent/$ARTIFACT/$VERSION/$ARTIFACT-$VERSION.jar"
