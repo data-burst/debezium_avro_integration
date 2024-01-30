@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main
-      - 5-feat-add-cicd-to-build-image-and-push-it-to-dockerhub
 
 jobs:
   build:
