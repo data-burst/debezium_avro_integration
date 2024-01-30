@@ -2,7 +2,7 @@
 VERSION=7.5.3
 echo "Debezium artifacts version: $VERSION"
 
-JAR_FILES_DIR="/kafka/plugins"
+JAR_FILES_DIR="/kafka/connect"
 echo "Creating directory: $JAR_FILES_DIR"
 mkdir -p $JAR_FILES_DIR
 
