@@ -42,7 +42,7 @@ OTHER_ARTIFACTS_URL=(
 )
 for ARTIFACT in ${OTHER_ARTIFACTS_URL[@]}; do
   echo $ARTIFACT
-  curl -S --progress-bar --remote-name --output-dir "$JAR_FILES_DIR/" "$JAR_FILES_DIR/" "$ARTIFACT"
+  curl -S --progress-bar --remote-name --output-dir "$JAR_FILES_DIR/" "$ARTIFACT"
 done
 
 echo "Done"
