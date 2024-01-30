@@ -1,13 +1,10 @@
 #!/bin/bash
 VERSION=7.5.3
-
 echo "Debezium artifacts version: $VERSION"
 
 JAR_FILES_DIR="/kafka/plugins"
-
 echo "Creating directory: $JAR_FILES_DIR"
 mkdir -p $JAR_FILES_DIR
-
 
 DEBEZIUM_ARTIFACTS=(
   "common-config"
@@ -20,6 +17,7 @@ DEBEZIUM_ARTIFACTS=(
 )
 JAR_FILES_DIR=/tmp
 for ARTIFACT in ${DEBEZIUM_ARTIFACTS[@]}; do
+  echo $ARTIFACT
   curl -S --progress-bar --remote-name --output-dir "$JAR_FILES_DIR/" "https://packages.confluent.io/maven/io/confluent/$ARTIFACT/$VERSION/$ARTIFACT-$VERSION.jar"
 done
 
@@ -42,10 +40,9 @@ OTHER_ARTIFACTS_URL=(
   "https://repo1.maven.org/maven2/io/confluent/logredactor/1.0.12/logredactor-1.0.12.jar"
   "https://repo1.maven.org/maven2/io/confluent/logredactor-metrics/1.0.12/logredactor-metrics-1.0.12.jar"
 )
-
 for ARTIFACT in ${OTHER_ARTIFACTS_URL[@]}; do
+  echo $ARTIFACT
   curl -S --progress-bar --remote-name --output-dir "$JAR_FILES_DIR/" "$JAR_FILES_DIR/" "$ARTIFACT"
 done
 
 echo "Done"
-
