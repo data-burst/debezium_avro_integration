@@ -14,6 +14,7 @@ DEBEZIUM_ARTIFACTS=(
   "kafka-connect-avro-data"
   "kafka-schema-registry-client"
   "kafka-schema-serializer"
+  "kafka-schema-converter"
 )
 
 for ARTIFACT in ${DEBEZIUM_ARTIFACTS[@]}; do
