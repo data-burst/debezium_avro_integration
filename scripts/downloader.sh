@@ -21,7 +21,7 @@ DEBEZIUM_ARTIFACTS=(
 )
 
 for ARTIFACT in ${DEBEZIUM_ARTIFACTS[@]}; do
-  wget --quiet --show-progress --progress=bar:force --directory-prefix "$JAR_FILES_DIR/" "https://packages.confluent.io/maven/io/confluent/$ARTIFACT/$VERSION/$ARTIFACT-$VERSION.jar"
+  wget --continue --quiet --show-progress --progress=bar:force --directory-prefix "$JAR_FILES_DIR/" "https://packages.confluent.io/maven/io/confluent/$ARTIFACT/$VERSION/$ARTIFACT-$VERSION.jar"
 done
 
 OTHER_ARTIFACTS_URL=(
@@ -45,7 +45,7 @@ OTHER_ARTIFACTS_URL=(
 )
 
 for ARTIFACT in ${OTHER_ARTIFACTS_URL[@]}; do
-  wget --quiet --show-progress --progress=bar:force --directory-prefix "$JAR_FILES_DIR/" "$ARTIFACT"
+  wget --continue --quiet --show-progress --progress=bar:force --directory-prefix "$JAR_FILES_DIR/" "$ARTIFACT"
 done
 
 echo "Done"
