@@ -7,8 +7,7 @@ services:
       - 9092:9092
       - 9093:9093
     volumes:
-      - /var/kafka/log:/bitnami/kafka/data/logs
-      - ./configs/server.properties:/bitnami/kafka/config
-      - ./logs:/var/kafka/log
+      - ./logs:/bitnami/kafka/data/log
+      - ./configs:/bitnami/kafka/config
     environment:
       - ALLOW_PLAINTEXT_LISTENER=yes
