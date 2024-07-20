@@ -74,16 +74,6 @@ services:
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
     depends_on:
       - zookeeper
-
-  kafdrop:
-    image: obsidiandynamics/kafdrop:4.0.1
-    container_name: kafdrop
-    ports:
-      - 9000:9000
-    environment:
-      KAFKA_BROKERCONNECT: kafka:9092
-    depends_on:
-      - kafka
   
   kafka_ui:
     image: provectuslabs/kafka-ui:latest
