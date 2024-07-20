@@ -1,0 +1,113 @@
+version: '3'
+
+services:
+  zookeeper:
+    image: quay.io/debezium/zookeeper:2.5
+    container_name: zookeeper
+    ports:
+      - 2181:2181
+      - 2888:2888
+      - 3888:3888
+
+  kafka:
+    image: quay.io/debezium/kafka:2.5
+    container_name: kafka
+    ports:
+      - 9092:9092
+    environment:
+      ZOOKEEPER_CONNECT: zookeeper:2181
+    depends_on:
+      - zookeeper
+
+  mysql:
+    image: quay.io/debezium/example-mysql:2.5
+    container_name: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: debezium
+      MYSQL_USER: mysqluser
+      MYSQL_PASSWORD: mysqlpw
+
+  mysql_cli:
+    image: mysql:8.0
+    container_name: mysql_cli
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+    depends_on:
+      - mysql
+
+  connect:
+    image: quay.io/debezium/connect:2.5
+    container_name: connect
+    ports:
+      - 8083:8083
+    environment:
+      GROUP_ID: 1
+      # Kafka config
+      CONFIG_STORAGE_TOPIC: my_connect_configs
+      OFFSET_STORAGE_TOPIC: my_connect_offsets
+      STATUS_STORAGE_TOPIC: my_connect_statuses
+      BOOTSTRAP_SERVERS: kafka:9092
+      # Avro config
+      KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
+      VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
+      CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema_registry:8081
+      CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema_registry:8081
+      KAFKA_CONNECT_PLUGINS_DIR: /kafka/connect
+    volumes:
+      - ../../jar_files:/kafka/connect/avro_jar_files
+    depends_on:
+      - kafka
+      - schema_registry
+      - mysql
+  
+  schema_registry:
+    image: confluentinc/cp-schema-registry:7.1.10 
+    container_name: schema_registry
+    ports:
+      - 8081:8081
+    environment:
+      SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: zookeeper:2181
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka:9092
+      SCHEMA_REGISTRY_HOST_NAME: schema_registry
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
+    depends_on:
+      - zookeeper
+
+  kafdrop:
+    image: obsidiandynamics/kafdrop:4.0.1
+    container_name: kafdrop
+    ports:
+      - 9000:9000
+    environment:
+      KAFKA_BROKERCONNECT: kafka:9092
+    depends_on:
+      - kafka
+  
+  kafka_ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka_ui 
+    ports:
+      - 8080:8080
+    environment:
+      DYNAMIC_CONFIG_ENABLED: 'true'
+      KAFKA_CLUSTERS_0_NAME: kafka-cluster
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+      KAFKA_CLUSTERS_0_SCHEMAREGISTRY: http://schema_registry:8081
+      SCHEMA_REGISTRY_SCHEMA_REGISTRY_INTER_INSTANCE_PROTOCOL: 'http'
+      KAFKA_CLUSTERS_0_KAFKACONNECT_0_NAME: connect
+      KAFKA_CLUSTERS_0_KAFKACONNECT_0_ADDRESS: http://connect:8083
+      KAFKA_CLUSTERS_0_AUDIT_TOPICAUDITENABLED: 'true'
+      KAFKA_CLUSTERS_0_AUDIT_CONSOLEAUDITENABLED: 'true'
+    depends_on:
+      - kafka
+      
+  mongodb:
+    image: mongo:7.0.12
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
