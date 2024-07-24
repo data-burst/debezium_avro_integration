@@ -19,6 +19,7 @@
   - [Project Usage 🧑‍💻](#project-usage-)
     - [Connecting Debezium to Kafka](#connecting-debezium-to-kafka)
   - [Contributing 👥](#contributing-)
+  - [Examples 📁](#examples-)
   - [License 📄](#license-)
 
 ## Project Description 🌱
@@ -30,6 +31,13 @@ Debezium Avro Integration demonstrates how to leverage Debezium for capturing ch
 ### Connecting Debezium to Kafka
 
 This section provides instructions on configuring Debezium to capture data changes from various sources and stream them to Kafka using Avro serialization. It's a foundational step for setting up real-time data pipelines that are robust, scalable, and maintainable.
+
+## Examples 📁
+
+We have different examples which you can find in the [examples directory](examples). These include:
+
+- **Avro Integration Example:** Demonstrates using Avro as a serialization method.
+- **MongoDB Sink Example:** Shows how to use MongoDB as a sink, with MySQL as the source.
 
 ## Contributing 👥
 
