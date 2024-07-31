@@ -32,7 +32,7 @@ Create a mysql-source-connector.json file to configure the MySQL source connecto
 
 ### 4. Configure MongoDB Sink Connector
 
-Create a mongodb-sink-connector.json file to configure the MongoDB sink connector. For detailed configuration options, see the Debezium MongoDB Connector documentation. See the file [here](./mongodb-sink-connector.json************).
+Create a mongodb-sink-connector.json file to configure the MongoDB sink connector. For detailed configuration options, see the Debezium MongoDB Connector documentation. See the file [here](./mongodb-sink-connector.json).
 
 Deploy the MongoDB sink connector:
 
@@ -45,7 +45,7 @@ curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" 
 - **mongodb_user:** MongoDB username (e.g., root)
 - **mongodb_pass:** MongoDB password (e.g., example)
 - **mongodb_host:** Hostname of the MongoDB server (e.g., mongodb)
-- **mongodb_port:** Port number of the MongoDB server (e.g., 27017)************************
+- **mongodb_port:** Port number of the MongoDB server (e.g., 27017)
 
 ### 5. Verify Data in MongoDB
 
