@@ -42,8 +42,6 @@ OTHER_ARTIFACTS_URL=(
   # log redactor
   "https://repo1.maven.org/maven2/io/confluent/logredactor/1.0.12/logredactor-1.0.12.jar"
   "https://repo1.maven.org/maven2/io/confluent/logredactor-metrics/1.0.12/logredactor-metrics-1.0.12.jar"
-  # Mongo Connect
-  "https://repo1.maven.org/maven2/org/mongodb/kafka/mongo-kafka-connect/1.13.0/mongo-kafka-connect-1.13.0.jar"
 )
 
 for ARTIFACT in ${OTHER_ARTIFACTS_URL[@]}; do
