@@ -21,6 +21,8 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+chmod +x -R $ROOT_DIR/jar_files
+
 # Run the second downloader script
 bash examples/$EXAMPLE_DIR/scripts/jarfile_downloader.sh
 

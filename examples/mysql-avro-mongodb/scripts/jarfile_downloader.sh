@@ -6,14 +6,20 @@ echo "Creating directory: $JAR_FILES_DIR"
 mkdir -p $JAR_FILES_DIR
 
 MONGO_KAFKA_CONNECT_VERSION=1.13.0
-ARTIFACTS_URL=(
-  # Mongo Connect
-  "https://repo1.maven.org/maven2/org/mongodb/kafka/mongo-kafka-connect/${MONGO_KAFKA_CONNECT_VERSION}/mongo-kafka-connect-${MONGO_KAFKA_CONNECT_VERSION}.jar"
-)
+ARTIFACT="https://github.com/mongodb/mongo-kafka/releases/download/r${MONGO_KAFKA_CONNECT_VERSION}/mongodb-kafka-connect-mongodb-${MONGO_KAFKA_CONNECT_VERSION}.zip"
 
-for ARTIFACT in ${ARTIFACTS_URL[@]}; do
-  wget --continue --quiet --show-progress --progress=bar:force --directory-prefix "$JAR_FILES_DIR/" "$ARTIFACT"
-done
+
+
+echo $ARTIFACT
+TMP_DIR=/tmp/mongodb
+JARFILE_NAME=mongodb-kafka-connect-mongodb-${MONGO_KAFKA_CONNECT_VERSION}
+mkdir -p $TMP_DIR
+cd $TMP_DIR
+wget --continue --quiet --show-progress --progress=bar:force --directory-prefix $TMP_DIR $ARTIFACT
+
+unzip ${JARFILE_NAME}.zip
+cp $JARFILE_NAME/lib/mongo-kafka-connect-${MONGO_KAFKA_CONNECT_VERSION}-confluent.jar ${JAR_FILES_DIR}
+rm -rf $TMP_DIR
 
 echo "Done"
 
