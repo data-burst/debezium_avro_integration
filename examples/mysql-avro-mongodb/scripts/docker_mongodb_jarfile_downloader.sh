@@ -18,4 +18,6 @@ unzip -j ${MONGO_KAFKA_CONNECT_DIR_NAME}.zip
 cp mongo-kafka-connect-${MONGO_KAFKA_CONNECT_VERSION}-confluent.jar ${JAR_FILES_DIR}
 rm -rf $TMP_DIR
 
+chmod +x -R $JAR_FILES_DIR
+
 echo "Done"
