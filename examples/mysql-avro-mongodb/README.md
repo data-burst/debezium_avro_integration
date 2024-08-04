@@ -10,7 +10,6 @@ This example demonstrates how to set up a Change Data Capture (CDC) pipeline usi
 
 - Docker and Docker Compose installed
 - Basic knowledge of Docker and Kafka
-- MySQL and MongoDB clients installed (optional, for verification)
 
 ## Step-by-Step Setup
 
@@ -50,3 +49,23 @@ curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" 
 ### 5. Verify Data in MongoDB
 
 Connect to MongoDB and verify that data is being replicated.
+
+
+## Obtaining JAR Files
+
+### Option 1: Run Downloader Scripts
+
+To download the required JAR files locally, run the [`run_downloaders.sh`](../run_downloaders.sh) script with the example directory name:
+```bash
+./examples/scripts/run_downloaders.sh mysql-avro-mongodb
+```
+
+### Option 2: Use Pre-built Docker Image
+
+You can use the pre-built Docker image `databurst/avro_mongodb:latest` instead of `quay.io/debezium/connect:2.5` in the connect service in the [docker-compose.yml](./docker-compose.yaml) file. This image already contains the required JAR files.
+
+By using this image, there's no need to mount the jar_files directory:
+```bash
+    volumes:
+      - ../../jar_files:/kafka/connect/avro_jar_files
+```
