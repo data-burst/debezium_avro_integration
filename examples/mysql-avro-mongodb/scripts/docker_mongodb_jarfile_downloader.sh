@@ -1,6 +1,6 @@
 #!/bin/bash
 
-JAR_FILES_DIR=/tmp/connect
+JAR_FILES_DIR=/kafka/connect
 echo "Creating directory: $JAR_FILES_DIR"
 mkdir -p $JAR_FILES_DIR
 
