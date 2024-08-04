@@ -46,4 +46,6 @@ for ARTIFACT in ${OTHER_ARTIFACTS_URL[@]}; do
   curl -S --progress-bar --remote-name --output-dir "$JAR_FILES_DIR/" "$ARTIFACT"
 done
 
+chmod +x -R $JAR_FILES_DIR
+
 echo "Done"

@@ -1,0 +1,14 @@
+{
+  "name": "mongodb-sink-connector",
+  "config": {
+    "connector.class": "com.mongodb.kafka.connect.MongoSinkConnector",
+    "tasks.max": "1",
+    "topics": "dbserver1.inventory.customers",
+    "connection.uri": "mongodb://root:example@mongodb:27017",
+    "database": "inventory",
+    "collection": "customers",
+    "transforms": "unwrap",
+    "transforms.unwrap.add.headers": "db,op,ts_ms",
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState"
+  }
+}
