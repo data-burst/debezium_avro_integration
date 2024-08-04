@@ -39,5 +39,5 @@ jobs:
           file: ./examples/mysql-avro-mongodb/Dockerfile
           push: true
           tags: |
-            databurst/avro_mongodb:latest
-            databurst/avro_mongodb:${{ env.GIT_SHORT_SHA }}
+            databurst/debezium_avro_mongodb_integration:latest
+            databurst/debezium_avro_mongodb_integration:${{ env.GIT_SHORT_SHA }}
