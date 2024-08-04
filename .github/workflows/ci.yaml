@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - 27-add-mongodb-as-a-sink-to-examples
 
 jobs:
   build:
