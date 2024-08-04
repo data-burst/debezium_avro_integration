@@ -1,5 +1,5 @@
 ---
-name: CI/CD pipeline for building Docker image
+name: CI/CD pipeline for building MongoDB Docker image
 
 on: 
   push:
@@ -12,7 +12,7 @@ on:
     - .github/workflows/mongodb.yaml
 
 jobs:
-  build:
+  build-mongodb:
     runs-on: ubuntu-latest
 
     steps:
