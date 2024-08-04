@@ -35,7 +35,7 @@ For example:
 
 If you have multiple commits in one merge request, you should squash them into a single commit with a suitable commit
 message when merging with the main branch. The commit message should summarize what changes you made in the merge
-request and why. It should also reference the issue that you resolved and include the ticket number from Jira. For
+request and why. It should also reference the issue that you resolved and include the Github issue number. For
 example:
 
 ```
