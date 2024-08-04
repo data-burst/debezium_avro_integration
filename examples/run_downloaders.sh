@@ -22,11 +22,11 @@ if [ $? -ne 0 ]; then
 fi
 
 # Run the second downloader script
-bash examples/$EXAMPLE_DIR/scripts/docker_mongodb_jarfile_downloader.sh
+bash examples/$EXAMPLE_DIR/scripts/jarfile_downloader.sh
 
 # Check if the second script executed successfully
 if [ $? -ne 0 ]; then
-  echo "Error: examples/$EXAMPLE_DIR/scripts/docker_mongodb_jarfile_downloader.sh failed"
+  echo "Error: examples/$EXAMPLE_DIR/scripts/jarfile_downloader.sh failed"
   exit 1
 fi
 
